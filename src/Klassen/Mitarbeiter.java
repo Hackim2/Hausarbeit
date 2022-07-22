@@ -4,12 +4,14 @@ import java.sql.Time;
 import java.util.Date;
 import java.time.*;
 
-public class Mitarbeiter extends JFrame {
+ class Mitarbeiter implements Comparable, Cloneable {
 
+    private static int total=0;
     private String name;
     private String berufsbezeichnung;
     private Date einstellungsdatum;
     private double jahresgehalt;
+
 
     Mitarbeiter(String name, String berufsbezeichnung, double jahresgehalt, Date einstellungsdatum){
         this.name = name;
@@ -49,4 +51,15 @@ public class Mitarbeiter extends JFrame {
     public void setJahresgehalt(double jahresgehalt){
         this.jahresgehalt = jahresgehalt;
     }
-}
+
+     @Override
+     public int compareTo(Object o) {
+         return 0;
+     }
+
+     // Mitarbeiteranzahl wiedergeben
+     public static int total() {
+         return total;
+     }
+
+ }
