@@ -4,13 +4,13 @@ import java.sql.Time;
 import java.util.Date;
 import java.time.*;
 
- class Mitarbeiter implements Comparable, Cloneable {
+ class Mitarbeiter implements Comparable {
 
     private static int total=0;
-    private String name;
-    private String berufsbezeichnung;
-    private Date einstellungsdatum;
-    private double jahresgehalt;
+    public String name;
+    public String berufsbezeichnung;
+    public Date einstellungsdatum;
+    public double jahresgehalt;
 
 
     Mitarbeiter(String name, String berufsbezeichnung, double jahresgehalt, Date einstellungsdatum){

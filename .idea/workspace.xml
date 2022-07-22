@@ -7,9 +7,7 @@
       <change beforePath="$PROJECT_DIR$/src/Klassen/Mitarbeiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Klassen/Mitarbeiter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
-    <list id="301f6478-2501-465a-a5fe-59cca87c2e70" name="Changes by Ahmad" comment="">
-      <change beforePath="$PROJECT_DIR$/src/GUI/MitarbeiterKarte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MitarbeiterKarte.java" afterDir="false" />
-    </list>
+    <list id="301f6478-2501-465a-a5fe-59cca87c2e70" name="Changes by Ahmad" comment="Changes by Ahmad" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +39,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2CFd69ez9Zif0Q6XKyki1QkBmq9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -96,7 +94,7 @@
       <option name="presentableId" value="Default" />
       <updated>1658402090032</updated>
       <workItem from="1658402091299" duration="19778000" />
-      <workItem from="1658490079043" duration="13295000" />
+      <workItem from="1658490079043" duration="16018000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1658414738429</created>
@@ -119,7 +117,21 @@
       <option name="project" value="LOCAL" />
       <updated>1658490147358</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="1">
+      <created>1658509340555</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1658509340555</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Changes by Ahmad">
+      <created>1658509351403</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1658509351403</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,7 +155,8 @@
     <MESSAGE value="first" />
     <MESSAGE value="second" />
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="Changes by Ahmad" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by Ahmad" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -151,6 +164,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.IllegalArgumentException" package="java.lang" />
           <option name="timeStamp" value="5" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="18" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/Klassen/Mitarbeiter.java</url>

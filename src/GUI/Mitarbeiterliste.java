@@ -21,26 +21,14 @@ public class Mitarbeiterliste {
 
     panel.setBackground(Color.gray);
 
-        //Mitarbeiter hinzufügen
+        /*Mitarbeiter hinzufügen
         mList = new ArrayList<Mitarbeiter>();
         //hinzufuegen();
         panel.add(mitarbeiterTabelle,BorderLayout.CENTER);
-
+*/
 
         //Name, Titel, Einstellungsdatum, Gehalt
 
-        JLabel name_l  = new JLabel("Name");
-        JLabel beruf_l = new JLabel("Beruf");
-        JLabel einstellungsdatum_l = new JLabel("Einstellungsdatum");
-        JLabel jahresgehalt_l = new JLabel("Jahresgehalt");
-
-        FlowLayout flow = new FlowLayout(FlowLayout.LEFT,50,0);
-        toppanel.setLayout(flow);
-        toppanel.add(name_l);
-        toppanel.add(beruf_l);
-        toppanel.add(einstellungsdatum_l);
-        toppanel.add(jahresgehalt_l);
-        panel.add(toppanel, BorderLayout.PAGE_START);
 
         //Buttons
         JButton hinzufügen = new JButton("Mitarbeiter hinzufügen");
@@ -57,9 +45,20 @@ public class Mitarbeiterliste {
         */
         
         //JTable > Mitarbeiter
-        JTable mitarbeiterTabelle = new JTable();
-        
-        panel.add(mitarbeiterTabelle, BorderLayout.CENTER);
+        String[] Spaltennamen = {"Name", "Berufsbezeichnung", "Einstellungsdatum", "jahresgehalt"};
+        String[][] MitA = {
+                {"Thomas", "Bauingenieur", "24/06/2016","52000.0"},
+                {"Khalil", "Programmierer", "20/07/2022", "20.0"},
+                {"Hakim","Hausmeister","15/06/2022","30.0"},
+        };
+
+
+
+        JTable mitarbeiterTabelle = new JTable(MitA,Spaltennamen);
+        JScrollPane tabellenhalter = new JScrollPane(mitarbeiterTabelle);
+        mitarbeiterTabelle.setFillsViewportHeight(true);
+
+        panel.add(tabellenhalter, BorderLayout.CENTER);
 
         //Toolbar
         menu.add(hinzufügen);
