@@ -45,8 +45,10 @@ public class Login implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == mitarbeiter_button) {
             frame.dispose();
+            Mitarbeiterliste kik = new Mitarbeiterliste();
         } else if (e.getSource() == aufträge_button) {
             frame.dispose();
+
 
             // TODO : open Aufträge
         }
