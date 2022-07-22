@@ -36,13 +36,14 @@ public class Mitarbeiterliste {
         JButton entfernen = new JButton("Mitarbeiter löschen");
 
 
-        /*
-        button hinzufügen(){
+
+        /* TODO : Methode erstellen :
+            hinzufuegen();{
             MitarbeiterKarte mitAKarte = new Mitarbeietrkarte();
             if mitAKarte.getMitAerstellt then
-                liste.add(mitaKarte.getMitarbeiter);
+                mlist.add(mitaKarte.getMitarbeiter);
         }
-        */
+*/
         
         //JTable > Mitarbeiter
         String[] Spaltennamen = {"Name", "Berufsbezeichnung", "Einstellungsdatum", "jahresgehalt"};
@@ -75,9 +76,10 @@ public class Mitarbeiterliste {
             frame.setContentPane(panel);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
-    
 
-    private void hinzufuegen(){
+    private void hinzufuegen() {
     }
+
+
 }
 
