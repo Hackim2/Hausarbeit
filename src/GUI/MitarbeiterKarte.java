@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MitarbeiterKarte implements ActionListener   {
-    DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+    DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
     JButton erstellen;
     Mitarbeiter newMitA;
     boolean mitAerstellt;
@@ -98,27 +98,41 @@ public class MitarbeiterKarte implements ActionListener   {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() ==erstellen ) {
-            newMitA.name = name_t.getText();
-            newMitA.berufsbezeichnung=beruf_t.getText();
-            try {
-                newMitA.einstellungsdatum = getdatumeins();
-            } catch (ParseException ex) {
-                throw new RuntimeException(ex);
-            }
-            try {
-                newMitA.jahresgehalt = Double.parseDouble(jahresgehalt_t.getText());
-            } catch (NumberFormatException h) {
-                h.printStackTrace();
-                JOptionPane.showMessageDialog(f,
-                        "Geben Sie eine Zahl ein.",
-                        "Ungültige Eingabe",
-                        JOptionPane.ERROR_MESSAGE);
-                // handle the error
-            }
+
+            getMitarbeiter();
+            mitAerstellt=true;
+            eintragen();
 
         }
     }
-    public JTextField getName_t() {
+    public Mitarbeiter getMitarbeiter() {
+        newMitA.name = name_t.getText();
+        newMitA.berufsbezeichnung = beruf_t.getText();
+        try {
+            newMitA.einstellungsdatum = getdatumeins();
+        } catch (ParseException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            newMitA.jahresgehalt = Double.parseDouble(jahresgehalt_t.getText());
+        } catch (NumberFormatException h) {
+            h.printStackTrace();
+            JOptionPane.showMessageDialog(f,
+                    "Geben Sie eine Zahl ein.",
+                    "Ungültige Eingabe",
+                    JOptionPane.ERROR_MESSAGE);
+            // handle the error
+        }
+        return newMitA;
+    }
+    public void eintragen() {
+        new Mitarbeiterliste();
+        Mitarbeiterliste.frame.setVisible(false);
+       //TODO: Mitarbeiter (newMitA) in JTable hinzufügen
+        // Mitarbeiterliste.m
+
+    }
+        public JTextField getName_t() {
         return name_t;
     }
 
@@ -152,9 +166,6 @@ public class MitarbeiterKarte implements ActionListener   {
         this.jahresgehalt_t = jahresghelat_t;
     }
 
-    public Mitarbeiter getMitarbeiter(){
-        return newMitA;
-    }
     public boolean getMitAerstellt(){
         return mitAerstellt;
     }

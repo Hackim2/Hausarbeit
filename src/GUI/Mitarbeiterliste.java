@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Mitarbeiterliste implements ActionListener {
+
+    tablemode tablemode = new tablemode();
     static JFrame frame = new JFrame("Mitarbeiter");
     JPanel panel = new JPanel(new BorderLayout());
     JToolBar menu = new JToolBar();
@@ -15,7 +17,7 @@ public class Mitarbeiterliste implements ActionListener {
     JButton bearbeiten = new JButton("Mitarbeiter bearbeiten");
     JButton entfernen = new JButton("Mitarbeiter löschen");
 
-    JTable mitarbeiterTabelle;
+    static JTable mitarbeiterTabelle;
     JScrollPane tabellenhalter;
 
 

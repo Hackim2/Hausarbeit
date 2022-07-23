@@ -7,7 +7,7 @@ public class tablemode extends AbstractTableModel{
 
     TableModel model;
     Mitarbeiter tempMitA ;
-    ArrayList<Mitarbeiter> mList = new ArrayList<Mitarbeiter>();
+    static ArrayList<Mitarbeiter> mList = new ArrayList<Mitarbeiter>();
 
 
 
