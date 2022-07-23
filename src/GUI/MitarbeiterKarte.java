@@ -1,22 +1,24 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MitarbeiterKarte {
-
+public class MitarbeiterKarte implements ActionListener   {
+    DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+    JButton erstellen;
     Mitarbeiter newMitA;
     boolean mitAerstellt;
 
-    JLabel name_l;
-    JLabel beruf_l;
-    JLabel einstellungsdatum_l;
-    JLabel jahresghalt_l;
-
+    JFrame f;
     JTextField name_t;
     JTextField beruf_t;
-    JTextField einstellungsdatum_t;
-    JTextField jahresghelat_t;
+    JFormattedTextField einstellungsdatum_t;
+    JTextField jahresgehalt_t;
+
     /*
     Button OK
     mitAerstellt = true;
@@ -29,34 +31,37 @@ public class MitarbeiterKarte {
     }
 
     public void buildUI(){
-        JFrame f = new JFrame("Panel Example");
+        JFrame f = new JFrame("Mitarbeiter hinzufügen");
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-        JLabel name_l  = new JLabel("Name");
+        JLabel name_l  = new JLabel("Name:");
         c.gridx = 0;
         c.gridy = 0;
-        c.insets = new Insets(5,0,0,0);
+        c.insets = new Insets(10,0,5,0);
         panel.add(name_l,c);
 
-        JLabel beruf_l = new JLabel("Beruf");
+        JLabel beruf_l = new JLabel("Beruf:");
         c.gridy = 1;
+        c.insets = new Insets(5,0,0,0);
         panel.add(beruf_l,c);
 
-        JLabel einstellungsdatum_l = new JLabel("Einstellungsdatum");
+        JLabel einstellungsdatum_l = new JLabel("Einstellungsdatum:");
         c.gridy = 2;
+        c.insets = new Insets(5, 10, 0, 0);
         panel.add(einstellungsdatum_l,c);
 
-        JLabel jahresgehalt_l = new JLabel("Jahresgehalt");
+        JLabel jahresgehalt_l = new JLabel("Jahresgehalt:");
         c.gridy = 3;
+        c.insets = new Insets(5,0,10,0);
         panel.add(jahresgehalt_l,c);
 
         JTextField name_t = new JTextField();
         name_t.setPreferredSize(new Dimension(100,20));
-        c.gridx = 1;
+        c.gridx = 2;
         c.gridy = 0;
-        c.insets = new Insets(5,20,0,0);
+        c.insets = new Insets(5,20,0,20);
         panel.add(name_t,c);
 
         JTextField beruf_t = new JTextField();
@@ -64,20 +69,54 @@ public class MitarbeiterKarte {
         c.gridy = 1;
         panel.add(beruf_t,c);
 
-        JTextField einstellungsdatum_t = new JTextField();
+        JFormattedTextField einstellungsdatum_t = new JFormattedTextField(format);
         einstellungsdatum_t.setPreferredSize(new Dimension(100,20));
         c.gridy = 2;
+
         panel.add(einstellungsdatum_t,c);
 
         JTextField jahresgehalt_t   = new JTextField();
         jahresgehalt_t.setPreferredSize(new Dimension(100,20));
         c.gridy = 3;
+        c.insets = new Insets(5, 20, 10, 20);
         panel.add(jahresgehalt_t,c);
+
+        JButton erstellen = new JButton("Eintrag hinzufügen");
+        c.gridy = 4;
+        c.gridx = 2;
+        panel.add(erstellen,c);
+
 
 
         f.setContentPane(panel);
-        f.setSize(400, 400);
+        f.setSize(450, 400);
+        f.setResizable(false);
+        f.pack();
+        f.setLocationRelativeTo(Mitarbeiterliste.frame);
         f.setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() ==erstellen ) {
+            newMitA.name = name_t.getText();
+            newMitA.berufsbezeichnung=beruf_t.getText();
+            try {
+                newMitA.einstellungsdatum = getdatumeins();
+            } catch (ParseException ex) {
+                throw new RuntimeException(ex);
+            }
+            try {
+                newMitA.jahresgehalt = Double.parseDouble(jahresgehalt_t.getText());
+            } catch (NumberFormatException h) {
+                h.printStackTrace();
+                JOptionPane.showMessageDialog(f,
+                        "Geben Sie eine Zahl ein.",
+                        "Ungültige Eingabe",
+                        JOptionPane.ERROR_MESSAGE);
+                // handle the error
+            }
+
+        }
     }
     public JTextField getName_t() {
         return name_t;
@@ -94,20 +133,23 @@ public class MitarbeiterKarte {
         this.beruf_t = beruf_t;
     }
 
-    public JTextField getEinstellungsdatum_t() {
+    public JFormattedTextField getEinstellungsdatum_t() {
         return einstellungsdatum_t;
     }
-
-    public void setEinstellungsdatum_t(JTextField einstellungsdatum_t) {
+    public Date getdatumeins() throws ParseException {
+        Date datum = format.parse(getEinstellungsdatum_t().getText());
+        return datum;
+    }
+    public void setEinstellungsdatum_t(JFormattedTextField einstellungsdatum_t) {
         this.einstellungsdatum_t = einstellungsdatum_t;
     }
 
     public JTextField getJahresghelat_t() {
-        return jahresghelat_t;
+        return jahresgehalt_t;
     }
 
     public void setJahresghelat_t(JTextField jahresghelat_t) {
-        this.jahresghelat_t = jahresghelat_t;
+        this.jahresgehalt_t = jahresghelat_t;
     }
 
     public Mitarbeiter getMitarbeiter(){

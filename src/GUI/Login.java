@@ -1,6 +1,6 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Login implements ActionListener {
     JFrame frame = new JFrame();
@@ -12,11 +12,6 @@ public class Login implements ActionListener {
         createMitarbeiterButton();
         createAuftragButton();
         createFrame();
-
-
-        //Frame
-
-
     }
 
     public void createFrame() {
@@ -45,7 +40,7 @@ public class Login implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == mitarbeiter_button) {
             frame.dispose();
-            Mitarbeiterliste kik = new Mitarbeiterliste();
+            new Mitarbeiterliste();
         } else if (e.getSource() == aufträge_button) {
             frame.dispose();
 

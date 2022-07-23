@@ -6,7 +6,7 @@ import java.time.*;
 
  class Mitarbeiter implements Comparable {
 
-    private static int total=0;
+    private static final int total=0;
     public String name;
     public String berufsbezeichnung;
     public Date einstellungsdatum;
