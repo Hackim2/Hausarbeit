@@ -5,19 +5,26 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MitarbeiterKarte implements ActionListener   {
-    DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-    JButton erstellen;
-    Mitarbeiter newMitA;
-    boolean mitAerstellt;
+    private Mitarbeiter newMitA;
+    private Mitarbeiterliste mitarbeiterliste;
+    private DateFormat format;
+    private JButton erstellen;
+    private JPanel panel;
+    private JLabel beruf_l;
+    private JLabel einstellungsdatum_l;
+    private JLabel jahresgehalt_l;
+    private JLabel name_l;
 
-    JFrame f;
-    JTextField name_t;
-    JTextField beruf_t;
-    JFormattedTextField einstellungsdatum_t;
-    JTextField jahresgehalt_t;
+
+    private JFrame f;
+    private JTextField name_t;
+    private JTextField beruf_t;
+    private JFormattedTextField einstellungsdatum_t;
+    private JTextField jahresgehalt_t;
 
     /*
     Button OK
@@ -81,7 +88,8 @@ public class MitarbeiterKarte implements ActionListener   {
         c.insets = new Insets(5, 20, 10, 20);
         panel.add(jahresgehalt_t,c);
 
-        JButton erstellen = new JButton("Eintrag hinzufügen");
+        erstellen = new JButton("Eintrag hinzufügen");
+        erstellen.addActionListener(this);
         c.gridy = 4;
         c.gridx = 2;
         panel.add(erstellen,c);
@@ -92,84 +100,74 @@ public class MitarbeiterKarte implements ActionListener   {
         f.setSize(450, 400);
         f.setResizable(false);
         f.pack();
-        f.setLocationRelativeTo(Mitarbeiterliste.frame);
+        f.setLocationRelativeTo(mitarbeiterliste.getFrame());
         f.setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() ==erstellen ) {
-
-            getMitarbeiter();
-            mitAerstellt=true;
-            eintragen();
-
+    public void actionPerformed( ActionEvent e) {
+        if (e.getSource() == erstellen) {
+            try {
+                readAndCreateMitarbeiter();
+            } catch (ParseException ex) {
+                throw new RuntimeException(ex);
+            }
+            f.dispose();
         }
     }
-    public Mitarbeiter getMitarbeiter() {
-        newMitA.name = name_t.getText();
-        newMitA.berufsbezeichnung = beruf_t.getText();
+    public synchronized void readAndCreateMitarbeiter() throws ParseException {
+        newMitA = new Mitarbeiter(getName_t(),getBeruf_t(),formatJahresgehalt_t(getJahresgehalt_t()),formatEinstellungsdatum(getEinstellungsdatum_t()));
+
+    }
+
+    /*
+    public Object[] object() throws ParseException {
+        return new Object[]{mList.get(0),mList.get(1),mList.get(2),mList.get(3)};
+    }
+    */
+    public Mitarbeiter getMitarbeiter(){ return newMitA; }
+    public String getName_t() {
+        return name_t.getText();
+    }
+    public String getBeruf_t() {
+        return beruf_t.getText();
+    }
+    public String getEinstellungsdatum_t() {
+        return einstellungsdatum_t.getText();
+    }
+    public String getJahresgehalt_t() {
+        return jahresgehalt_t.getText();
+    }
+    public Date formatEinstellungsdatum(String einstellungsdatum) throws ParseException {
+        Date datum = new Date();
         try {
-            newMitA.einstellungsdatum = getdatumeins();
+            datum = format.parse(einstellungsdatum);
         } catch (ParseException ex) {
-            throw new RuntimeException(ex);
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(f,
+                    "Geben Sie ein gültiges Datum ein.",
+                    "Ungültige Eingabe",
+                    JOptionPane.ERROR_MESSAGE);
         }
+        return datum;
+    }
+
+    public double formatJahresgehalt_t(String jahresgehalt) {
+        double gehalt = 0;
         try {
-            newMitA.jahresgehalt = Double.parseDouble(jahresgehalt_t.getText());
-        } catch (NumberFormatException h) {
-            h.printStackTrace();
+            gehalt = Double.parseDouble(jahresgehalt);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(f,
                     "Geben Sie eine Zahl ein.",
                     "Ungültige Eingabe",
                     JOptionPane.ERROR_MESSAGE);
-            // handle the error
+
         }
-        return newMitA;
-    }
-    public void eintragen() {
-        new Mitarbeiterliste();
-        Mitarbeiterliste.frame.setVisible(false);
-       //TODO: Mitarbeiter (newMitA) in JTable hinzufügen
-        // Mitarbeiterliste.m
-
-    }
-        public JTextField getName_t() {
-        return name_t;
+        return gehalt;
     }
 
-    public void setName_t(JTextField name_t) {
-        this.name_t = name_t;
-    }
-    public JTextField getBeruf_t() {
-        return beruf_t;
-    }
-
-    public void setBeruf_t(JTextField beruf_t) {
-        this.beruf_t = beruf_t;
-    }
-
-    public JFormattedTextField getEinstellungsdatum_t() {
-        return einstellungsdatum_t;
-    }
-    public Date getdatumeins() throws ParseException {
-        Date datum = format.parse(getEinstellungsdatum_t().getText());
-        return datum;
-    }
-    public void setEinstellungsdatum_t(JFormattedTextField einstellungsdatum_t) {
-        this.einstellungsdatum_t = einstellungsdatum_t;
-    }
-
-    public JTextField getJahresghelat_t() {
-        return jahresgehalt_t;
-    }
-
-    public void setJahresghelat_t(JTextField jahresghelat_t) {
-        this.jahresgehalt_t = jahresghelat_t;
-    }
-
-    public boolean getMitAerstellt(){
-        return mitAerstellt;
-    }
 
 
 
 }
+

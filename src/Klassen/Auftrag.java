@@ -4,17 +4,28 @@ import java.util.Date;
 
 public class Auftrag extends JFrame {
 
-    private String auftraggeber;
-    private String adresse;
-    private Date startDatum;
-    private Date endDatum;
-    private String beschreibung;
+    String auftraggeber;
+    String adresse;
+    Date startDatum;
+    Date endDatum;
+    String beschreibung;
 
     Auftrag(String auftraggeber, String adresse, String beschreibung, Date startDatum, Date endDatum){
         this.auftraggeber=auftraggeber;
         this.adresse = adresse;
         this.startDatum = startDatum;
         this.endDatum = endDatum;
+        this.beschreibung = beschreibung;
+    }
+    Auftrag(String auftraggeber, String adresse, String beschreibung, Date startDatum){
+        this.auftraggeber=auftraggeber;
+        this.adresse = adresse;
+        this.startDatum = startDatum;
+        this.beschreibung = beschreibung;
+    }
+    Auftrag(String auftraggeber, String adresse, String beschreibung){
+        this.auftraggeber=auftraggeber;
+        this.adresse = adresse;
         this.beschreibung = beschreibung;
     }
 
@@ -44,6 +55,9 @@ public class Auftrag extends JFrame {
         this.endDatum = endDatum;
     }
 
+    public int compareTo(Object o) {
+        return 0;
+    }
     public String getBeschreibung(){
         return this.beschreibung;
     }

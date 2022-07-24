@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 public class Login implements ActionListener {
     JFrame frame = new JFrame();
@@ -43,6 +44,11 @@ public class Login implements ActionListener {
             new Mitarbeiterliste();
         } else if (e.getSource() == aufträge_button) {
             frame.dispose();
+            try {
+                new Aufträgeliste();
+            } catch (ParseException ex) {
+                throw new RuntimeException(ex);
+            }
 
 
             // TODO : open Aufträge

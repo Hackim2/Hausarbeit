@@ -7,43 +7,24 @@ import java.util.ArrayList;
 
 public class Mitarbeiterliste implements ActionListener {
 
-    tablemode tablemode = new tablemode();
-    static JFrame frame = new JFrame("Mitarbeiter");
-    JPanel panel = new JPanel(new BorderLayout());
-    JToolBar menu = new JToolBar();
-    MitarbeiterKarte mitAKarte;
-    //Buttons
-    JButton hinzufügen = new JButton("Mitarbeiter hinzufügen");
-    JButton bearbeiten = new JButton("Mitarbeiter bearbeiten");
-    JButton entfernen = new JButton("Mitarbeiter löschen");
+    private JFrame frame;
+    private JPanel panel;
+    private JToolBar menu;
 
-    static JTable mitarbeiterTabelle;
-    JScrollPane tabellenhalter;
+    private MitarbeiterTablemode tablemode;
+    private JTable mitarbeiterTabelle;
+    private JScrollPane tabellenhalter;
 
 
     Mitarbeiterliste() {
 
     panel.setBackground(Color.gray);
 
-        /*Mitarbeiter hinzufügen
-        mList = new ArrayList<Mitarbeiter>();
-        //hinzufuegen();
-        panel.add(mitarbeiterTabelle,BorderLayout.CENTER);
-*/
+    public Mitarbeiterliste() {
+        createButtons();
+        initialize();
+        setConfig();
 
-        //Name, Titel, Einstellungsdatum, Gehalt
-
-
-
-
-
-        /* TODO : Methode erstellen :
-            hinzufuegen();{
-            MitarbeiterKarte mitAKarte = new Mitarbeietrkarte();
-            if mitAKarte.getMitAerstellt then
-                mlist.add(mitaKarte.getMitarbeiter);
-
-         */
     }
 
     public void hinzufuegen() {
@@ -72,6 +53,23 @@ public class Mitarbeiterliste implements ActionListener {
 
 
         }
+
+    }
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == hinzufügen) {mKarte = new MitarbeiterKarte(this);}
+            else if (e.getSource() == bearbeiten) ;
+            else if (e.getSource() == entfernen) ;
+
+
+
+
+            /*
+            mList.add(mKarte.getMitarbeiter());
+            tablemode.fireTableRowsInserted(mList.size() -1, mList.size() -1);
+            frame.repaint();*/
+
+
 
     }
 }
